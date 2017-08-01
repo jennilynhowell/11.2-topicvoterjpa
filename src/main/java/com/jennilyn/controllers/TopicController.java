@@ -1,6 +1,8 @@
 package com.jennilyn.controllers;
 
+import com.jennilyn.interfaces.CommentRepository;
 import com.jennilyn.interfaces.TopicRepository;
+import com.jennilyn.models.Comment;
 import com.jennilyn.models.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class TopicController {
 
     @Autowired
     TopicRepository repo;
+
+    @Autowired
+    CommentRepository commentRepo;
 
     @RequestMapping("/")
     public String index(Model model){
@@ -38,6 +43,16 @@ public class TopicController {
         Topic topic = repo.findOne(topicId);
         model.addAttribute("topic", topic);
         return "topicDetail";
+    }
+
+    @RequestMapping(value = "/topic/{topicId}/createComment", method = RequestMethod.POST)
+    public String createComment(@PathVariable("topicId") long topicId,
+                                @RequestParam("commentername") String commentername,
+                                @RequestParam("message") String message) {
+        Topic topic = repo.findOne(topicId);
+        Comment newComment = new Comment(commentername, message, topic);
+        commentRepo.save(newComment);
+        return "redirect:/topic/" + topicId;
     }
 
 }
