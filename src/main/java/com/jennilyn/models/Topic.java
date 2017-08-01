@@ -1,6 +1,7 @@
 package com.jennilyn.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "topic")
@@ -11,6 +12,9 @@ public class Topic {
     private long id;
     private String title;
     private String description;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     public Topic() {}
 
@@ -41,5 +45,13 @@ public class Topic {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
