@@ -14,6 +14,11 @@ public class Topic {
 
     public Topic() {}
 
+    public Topic(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }
