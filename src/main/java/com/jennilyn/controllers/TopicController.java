@@ -5,6 +5,7 @@ import com.jennilyn.models.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,14 @@ public class TopicController {
         Topic topic = new Topic(title, description);
         repo.save(topic);
         return "redirect:/";
+    }
+
+    @RequestMapping("/topic/{topicId}")
+    public String topicDetail(@PathVariable("topicId") long topicId,
+                              Model model){
+        Topic topic = repo.findOne(topicId);
+        model.addAttribute("topic", topic);
+        return "topicDetail";
     }
 
 }

@@ -20,6 +20,8 @@
         </div>
     </div>
 
+    <hr/>
+
     <div class="row">
         <h3>Topics</h3>
         <div class="col-md-4" th:each="topic : ${topics}">
@@ -27,7 +29,11 @@
                 <div class="panel-heading">
                     <h3 class="panel-title" th:text="${topic.title}"></h3>
                 </div>
-                <div class="panel-body" th:text="${topic.description}"></div>
+                <div class="panel-body">
+                    <div th:text="${topic.description}"></div>
+                    <a th:href="'/topic/' + @{${topic.id}}">Leave a Comment</a>
+
+                </div>
             </div>
         </div>
 

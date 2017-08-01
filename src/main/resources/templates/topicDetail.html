@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <title>Topic Detail</title>
+</head>
+<body class="container">
+
+    <h1>Comment Details</h1>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title" th:text="${topic.title}"></h3>
+        </div>
+        <div class="panel-body">
+            <div th:text="${topic.description}"></div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <h3>Add a New Comment</h3>
+        <div class="col-md-6">
+            <form action="/addComment" method="post" class="form-group form-horizontal">
+                <input class="form-control" type="text" name="commenterName" placeholder="Your Name"/>
+                <input class="form-control" type="text" name="message" placeholder="Your Message"/>
+                <input class="form-control btn btn-primary" type="submit" name="submit" value="Add Comment"/>
+            </form>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <h3>Comments</h3>
+        <!--<div class="col-md-4" th:each="topic : ${topics}">-->
+            <!--<div class="panel panel-primary">-->
+                <!--<div class="panel-heading">-->
+                    <!--<h3 class="panel-title" th:text="${topic.title}"></h3>-->
+                <!--</div>-->
+                <!--<div class="panel-body">-->
+                    <!--<div th:text="${topic.description}"></div>-->
+                    <!--<a th:href="'/topic/' + @{${topic.id}}">Leave a Comment</a>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+
+
+</body>
+</html>
