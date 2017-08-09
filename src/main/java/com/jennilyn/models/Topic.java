@@ -1,5 +1,9 @@
 package com.jennilyn.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +18,7 @@ public class Topic {
     private String description;
 
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Comment> comments;
 
     public Topic() {}
